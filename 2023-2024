@@ -2,9 +2,18 @@ This data is for the LA Science Fair and hopefully for ISEF as well if we are ab
 This is taking place in the 2023-2024 season and we are trying to diagnose idiopathic pulmonary fibrosis
 
 Project Abstract:
+Pulmonary fibrosis inflicts breathlessness, coughing, and pain on its victims, yet there's no cure—only a lung transplant provides hope. 
+Shockingly, research faces near-zero funding and almost no progress against this fatal adversary compared to other diseases such as 
+certain types of pneumonia. It seems like there is no hope in the battle against curing this ailment. And yet, with such a deadly 
+disease, It remains under-researched and has minimal funding. But what if there was a way to develop a potential cure? Imagine a 
+future where there is a way to find the definitive blueprints to create a drug that can mitigate and possibly reverse the effects of 
+pulmonary fibrosis. A collaboration between machine learning and complex molecular structures can bring such a future to fruition.
+We planned to use natural compounds that could alleviate pulmonary fibrosis by analyzing their molecular features and using them 
+to train a neural network. The neural network would then produce a compound or drug that, in theory, can mitigate the 
+effects that pulmonary fibrosis has on the individual. This approach focused on regulating TGF beta signals, which are protein 
+signals involved in pulmonary fibrosis. Our plans include lab research to refine this solution experiment with various supplement 
+dosages and see what type of features would work best in real life. In summary, our innovative research combines machine learning 
+and molecular biology to tackle pulmonary fibrosis. We hope to revolutionize treatment for this ailment and make our 
+work more accessible. 
 
-
-TO DOS:
-1.) Research more about data necessary for what we are doing currently with TGF Beta waves (look in RNNS and De Novo Drug Design)
-2.) Try finishing the code by next week and also know the shape of the data that will be trained(and tell Vinayan)
-3.) Finish the abstract today and start formulating ideas for the poster board (come up with statistics)
+Other stuff:
