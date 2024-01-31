@@ -26,8 +26,13 @@ class Qsar(nn.Module):
         super(Qsar, self).__init__()
         # Define layers
         self.fc1 = nn.Linear(input_size, hidden_size)
+        self.fc2 = nn.Linear(hidden_size, hidden_size)
+        self.fc3 = nn.Linear(hidden_size, hidden_size)
     def forward(self, x):
         out = self.fc1(x)
+        out = self.fc2(out)
+
+        return out
 
 model = Qsar() # put in values of stuff
 
@@ -36,3 +41,9 @@ learning_rate = 0.001
 # Loss and Optimizer
 criterion = nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+
+# Training
+
+# Evaluating
+
+# Deploying model (may have to build front end for coolness)
