@@ -1,3 +1,4 @@
+import torch
 import torch.nn as nn
 import pandas as pd
 import numpy as np
@@ -14,4 +15,24 @@ import seaborn as sns
 sdf_file_path = ''
 
 supplier = Chem.SDMolSupplier(sdf_file_path) # reading from sd file
-mol_list = (mol for mol in supplier if mol is not None)
+mol_list = (mol for mol in supplier if mol is not None) # change if necessary
+
+# Data stuff
+
+# Model stuff
+
+class Qsar(nn.Module):
+    def __init__(self, input_size, hidden_size, dropout_rate, out_size):
+        super(Qsar, self).__init__()
+        # Define layers
+        self.fc1 = nn.Linear(input_size, hidden_size)
+    def forward(self, x):
+        out = self.fc1(x)
+
+model = Qsar() # put in values of stuff
+
+learning_rate = 0.001
+
+# Loss and Optimizer
+criterion = nn.MSELoss()
+optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
