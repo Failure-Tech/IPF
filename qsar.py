@@ -12,6 +12,33 @@ from rdkit.Chem import PandasTools, AllChem, Descriptors
 import tensorboard as tb
 import seaborn as sns
 
+#imports for data
+import rdkit
+from rdkit import Chem
+from rdkit.Chem import Descriptors
+from rdkit.Chem import Draw
+from rdkit.Chem.Draw import IPythonConsole
+
+#saves .mol as image(for testing purposes; also this is currently a quercetin model, will import multiple models latter)
+mol = Chem.MolFromMolFile('Quercetin.mol')
+img = Draw.MolToImage(mol)
+img.save('molecule_image.png')
+
+#Chemical descriptors
+mw = rdkit.Chem.Descriptors.MolWt(mol)
+logp = rdkit.Chem.Descriptors.MolLogP(mol)
+tpsa = rdkit.Chem.Descriptors.TPSA(mol)
+num_h_donors = rdkit.Chem.Descriptors.NumHDonors(mol)
+num_h_acceptors = rdkit.Chem.Descriptors.NumHAcceptors(mol)
+
+#printing data(also for testing purposes)
+print(f"Molecular Weight: {mw}")
+print(f"LogP: {logp}")
+print(f"Topological Polar Surface Area: {tpsa}")
+print(f"Number of Hydrogen Donors: {num_h_donors}")
+print(f"Number of Hydrogen Acceptors: {num_h_acceptors}")
+
+
 # Import data
 sdf_file_path = ''
 
