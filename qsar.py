@@ -7,6 +7,7 @@ from torch.utils.data import DataLoader, Dataset
 from sklearn.preprocessing import MinMaxScaler
 from copy import deepcopy as dc
 from rdkit import Chem, DataStructs
+import nltk
 from rdkit.Chem import PandasTools, AllChem, Descriptors
 import tensorboard as tb
 import seaborn as sns
