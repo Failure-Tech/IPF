@@ -55,7 +55,8 @@ class Qsar(nn.Module):
         # Define layers
         self.fc1 = nn.Linear(input_size, hidden_size)
         self.fc2 = nn.Linear(hidden_size, hidden_size)
-        self.fc3 = nn.Linear(hidden_size, hidden_size)
+        self.relu = nn.ReLU(hidden_size, hidden_size)
+        self.fc3 = nn.Linear(hidden_size, out_size)
     def forward(self, x):
         out = self.fc1(x)
         out = self.fc2(out)
