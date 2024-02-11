@@ -17,4 +17,6 @@ and molecular biology to tackle pulmonary fibrosis. We hope to revolutionize tre
 work more accessible. 
 
 To-Do: 
-get necessary data
+    - get necessary data
+    - do goofiness to model
+    - install torchdrug properly

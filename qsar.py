@@ -6,12 +6,11 @@ import matplotlib.pyplot as plt
 from torch.utils.data import DataLoader, Dataset
 from sklearn.preprocessing import MinMaxScaler
 from copy import deepcopy as dc
-from rdkit import Chem, DataStructs
-import nltk
-from rdkit.Chem import PandasTools, AllChem, Descriptors
+import torchdrug
+from torchdrug.layers import GCN
+from torchdrug.models import MultiLayerProtection
 import tensorboard as tb
 import seaborn as sns
-
 #imports for data
 import rdkit
 from rdkit import Chem
@@ -49,25 +48,33 @@ mol_list = (mol for mol in supplier if mol is not None) # change if necessary
 
 # Model stuff
 
-class Qsar(nn.Module):
-    def __init__(self, input_size, hidden_size, dropout_rate, out_size):
-        super(Qsar, self).__init__()
+class GCN_Qsar(nn.Module):
+    def __init__(self, gcn_input_dim, qsar_input_dim, hidden_dim, out_dim, num_layers):
+        super(GCN_Qsar, self).__init__()
         # Define layers
-        self.fc1 = nn.Linear(input_size, hidden_size)
-        self.fc2 = nn.Linear(hidden_size, hidden_size)
-        self.relu = nn.ReLU(hidden_size, hidden_size)
-        self.fc3 = nn.Linear(hidden_size, out_size)
-    def forward(self, x):
-        out = self.fc1(x)
-        out = self.fc2(out)
+        # self.fc1 = nn.Linear(input_size, hidden_size)
+        # self.fc2 = nn.Linear(hidden_size, hidden_size)
+        # self.relu = nn.ReLU(hidden_size, hidden_size)
+        # self.fc3 = nn.Linear(hidden_size, out_size)
+        self.gcn = GCN(gcn_input_dim, hidden_dim)
+        self.qsar_mlp = MultiLayerProtection(qsar_input_dim, hidden_dim)
+        self.relu = nn.ReLU()
+        self.linear = nn.Linear(hidden_dim*2, out_dim)
 
-        return out
+    def forward(self, graph, qsar_features):
+        gcn_output = self.gcn(graph, graph.node_features)
+        qsar_output = self.qsar_mlp(qsar_features)
+        x = torch.cat([gcn_output, qsar_output], dim=1)
 
-model = Qsar() # put in values of stuff
+        x = self.relu(x)
+        x = self.linear(x)
+        return x
+
+model = GCN_Qsar() # put in values of stuff
+
+# Initializing Model
 
 learning_rate = 0.001
-
-# Loss and Optimizer
 criterion = nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
