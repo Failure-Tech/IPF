@@ -37,13 +37,6 @@ print(f"Topological Polar Surface Area: {tpsa}")
 print(f"Number of Hydrogen Donors: {num_h_donors}")
 print(f"Number of Hydrogen Acceptors: {num_h_acceptors}")
 
-
-# Import data
-sdf_file_path = ''
-
-supplier = Chem.SDMolSupplier(sdf_file_path) # reading from sd file
-mol_list = (mol for mol in supplier if mol is not None) # change if necessary
-
 # Data stuff
 
 # Model stuff
@@ -69,6 +62,7 @@ class GCN_Qsar(nn.Module):
         x = self.relu(x)
         x = self.linear(x)
         return x
+
 
 model = GCN_Qsar() # put in values of stuff
 
