@@ -63,8 +63,24 @@ class GCN_Qsar(nn.Module):
         x = self.linear(x)
         return x
 
+class Qsar(nn.Module):
+    def __init__(self, input_dim, hidden_dim, output_dim):
+        super(Qsar, self).__init__()
+        self.fc1 = nn.Linear(input_dim, hidden_dim)
+        self.fc2 = nn.Linear(hidden_dim, hidden_dim)
+        self.relu = nn.ReLU(hidden_dim, hidden_dim)
+        self.fc3 = nn.Linear(hidden_dim, output_dim)
+
+    def forward(self, x):
+        x = self.fc1(x)
+        x = self.fc2(x)
+        x = self.relu(x)
+        x = self.fc3(x)
+        return x
 
 model = GCN_Qsar() # put in values of stuff
+
+qsar = Qsar() # put in values for stuff
 
 # Initializing Model
 
