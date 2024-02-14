@@ -87,6 +87,7 @@ qsar = Qsar() # put in values for stuff
 learning_rate = 0.001
 criterion = nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
+qsar_optimizer = torch.optim.Adam(qsar.parameters(), lr=learning_rate)
 
 # Training
 
